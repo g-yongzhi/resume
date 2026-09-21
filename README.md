@@ -11,8 +11,7 @@
 - 城市：成都，可接受出差和现场作业
 - 邮箱：2758556392@qq.com
 
-> 完整简历见：[docs/resume.md](docs/resume.md)  
-> PDF 简历文件：`郭宏简历-IT.pdf`，建议通过 GitHub 网页上传到仓库根目录。
+
 
 ---
 
