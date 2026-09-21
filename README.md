@@ -11,8 +11,6 @@
 - 城市：成都，可接受出差和现场作业
 - 邮箱：2758556392@qq.com
 
-
-
 ---
 
 ## 个人定位
@@ -32,38 +30,35 @@
 
 ## 项目导航
 
-### 物联网 / 硬件 / EDA
+### 已上传仓库
 
 | 项目 | 内容 |
 |---|---|
+| [Lower Limb Exoskeleton](https://github.com/g-yongzhi/lower-limb-exoskeleton) | 下肢助力外骨骼项目资料整理，原始代码未完整留存，以设计过程、硬件资料和项目文档为主。 |
 | [ESP32 Desktop Robot](https://github.com/g-yongzhi/esp32-desktop-robot) | ESP32 桌面机器人相关工程整理，包含硬件工程资料和项目说明。 |
 | [Automatic Temperature Alarm PCB](https://github.com/g-yongzhi/automatic-temperature-alarm-pcb) | 自动温度报警器电路图 / PCB 工程整理，来自嘉立创 EDA 项目。 |
-| [Lower Limb Exoskeleton](https://github.com/g-yongzhi/lower-limb-exoskeleton) | 下肢助力外骨骼项目资料整理，原始代码未完整留存，以设计过程、硬件资料和项目文档为主。 |
-
-### 软件平台 / 项目交付
-
-| 项目 | 内容 |
-|---|---|
 | [Exoskeleton Cloud Platform](https://github.com/g-yongzhi/exoskeleton-cloud-platform) | 外骨骼云平台前端恢复版，整理自源代码 PDF，明确区分静态前端与未接入硬件部分。 |
-| [Lingke Studio Website](https://github.com/g-yongzhi/lingke-studio-website) | React + Vite + Express 的工作室官网项目，包含官网展示、案例页、联系表单和后台接口。 |
-| [Lingke Wallpaper Sharing Software](https://github.com/g-yongzhi/lingke-wallpaper-sharing-software) | Node.js + Express + MySQL 壁纸分享网站，包含用户登录、上传、分类、下载等模块。 |
-| [Quick Service Guide App](https://github.com/g-yongzhi/quick-service-guide-app) | Kotlin + Jetpack Compose 办事指南 Android 应用，包含城市、分类、搜索和事项详情。 |
 
 ### 小程序 / Web 工具
 
-| 项目 | 内容 |
-|---|---|
-| [Shared Shopping Bag Mini Program](https://github.com/g-yongzhi/shared-shopping-bag-miniprogram) | 共享购物袋小程序，包含站点、扫码借还、订单、押金会员等页面。 |
-| [Time Sequence Flower Mini Program](https://github.com/g-yongzhi/time-sequence-flower-miniprogram) | 旅行与花期主题小程序，包含目的地、美食、酒店、攻略、账单等页面。 |
-| [Campus Lost and Found Mini Program](https://github.com/g-yongzhi/campus-lost-and-found-miniprogram) | 校园失物招领小程序原型，包含分类、信息卡片和首页布局。 |
-| [Freelance Ledger](https://github.com/g-yongzhi/freelance-ledger) | 原生 HTML / CSS / JavaScript 接单记账工具，本地保存收入、支出和分账数据。 |
-| [Anniversary Time Capsule](https://github.com/g-yongzhi/anniversary-time-capsule) | 纪念日 / 时间胶囊网页工具，用于记录生日、纪念日和自定义事件。 |
-
-### 其他技术探索
+这些项目已整理到当前仓库的 `projects/` 目录，点击可查看项目说明。
 
 | 项目 | 内容 |
 |---|---|
-| [xuni Quant Trading System](https://github.com/g-yongzhi/xuni-quant-trading-system) | 基于 Freqtrade 的量化交易研究项目，公开版仅保留源码、脚本、测试和示例配置。 |
+| [Shared Shopping Bag Mini Program](projects/shared-shopping-bag-miniprogram) | 共享购物袋小程序，包含站点、扫码借还、订单、押金会员等页面。 |
+| [Time Sequence Flower Mini Program](projects/time-sequence-flower-miniprogram) | 旅行与花期主题小程序，包含目的地、美食、酒店、攻略、账单等页面。 |
+| [Campus Lost and Found Mini Program](projects/campus-lost-and-found-miniprogram) | 校园失物招领小程序原型，包含分类、信息卡片和首页布局。 |
+| [Freelance Ledger](projects/freelance-ledger) | 原生 HTML / CSS / JavaScript 接单记账工具，本地保存收入、支出和分账数据。 |
+| [Anniversary Time Capsule](projects/anniversary-time-capsule) | 纪念日 / 时间胶囊网页工具，用于记录生日、纪念日和自定义事件。 |
+
+### 待整理上传
+
+以下项目本地已有整理版本，后续会继续上传到当前仓库或拆分为独立仓库：
+
+- Lingke Studio Website
+- Lingke Wallpaper Sharing Software
+- Quick Service Guide App
+- xuni Quant Trading System
 
 ---
 
