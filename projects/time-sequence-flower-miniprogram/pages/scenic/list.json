@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "花期景点",
+  "navigationBarBackgroundColor": "#fcfcf9",
+  "usingComponents": { "ui-icon": "/components/icon/icon" }
+}

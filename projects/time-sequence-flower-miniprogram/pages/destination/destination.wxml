@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="page-head">
+    <text class="head-kicker">一季一花 · 一地一诗</text>
+    <text class="head-title font-serif">花径寻芳</text>
+    <text class="head-sub">按节气与花种，精准发现花期目的地</text>
+  </view>
+
+  <view class="city-list">
+    <view class="city-card card" wx:for="{{cities}}" wx:key="id" data-type="{{item.type}}" bindtap="goFlower">
+      <image class="city-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="city-info">
+        <text class="city-name font-serif">{{item.name}}</text>
+        <text class="city-flower">市花 · {{item.flower}}</text>
+        <text class="city-desc">{{item.desc}}</text>
+      </view>
+      <ui-icon name="chevron-right" size="32" />
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-title font-serif">花期景点</text>
+    <view class="section-line"></view>
+    <text class="section-sub">共 {{scenics.length}} 处</text>
+  </view>
+
+  <view class="spot-list">
+    <view class="spot-item card" wx:for="{{scenics}}" wx:key="id" data-id="{{item.id}}" bindtap="goScenic">
+      <image class="spot-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="spot-badge">{{item.status}}</view>
+      <view class="spot-info">
+        <view class="spot-top">
+          <text class="spot-name font-serif">{{item.name}}</text>
+          <text class="spot-season">{{item.season}}</text>
+        </view>
+        <text class="spot-place">{{item.place}} · {{item.city}}</text>
+        <text class="spot-desc">「{{item.desc}}」</text>
+        <text class="spot-views">{{item.views}} 次探访</text>
+      </view>
+    </view>
+  </view>
+</view>

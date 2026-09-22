@@ -1,0 +1,57 @@
+<view class="page">
+  <view class="map-wrap">
+    <map
+      class="map"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="{{scale}}"
+      markers="{{markers}}"
+      show-location
+      enable-zoom
+      enable-scroll
+      bindmarkertap="onMarkerTap"
+    />
+    <view class="map-action" bindtap="onRecenter">
+      <text class="map-action__icon">◎</text>
+      <text class="map-action__text">My Location</text>
+    </view>
+  </view>
+
+  <view class="panel">
+    <view class="header">
+      <text class="page-title">Nearby Stations</text>
+      <text class="page-subtitle">Tap to select</text>
+    </view>
+
+    <scroll-view class="station-list" scroll-y enhanced show-scrollbar="{{false}}">
+      <view
+        class="station-item card {{selectedId === item.id ? 'active' : ''}}"
+        wx:for="{{stations}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onSelectStation"
+      >
+        <view class="station-item__main">
+          <text class="station-item__name">{{item.name}}</text>
+          <text class="station-item__address">{{item.address}}</text>
+        </view>
+        <view class="station-item__meta">
+          <view class="status {{item.isOnline ? 'online' : 'offline'}}">{{item.statusText}}</view>
+          <text class="bags">{{item.availableBags}} bags</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="footer" wx:if="{{selectedStation}}">
+      <view class="footer-info">
+        <text class="footer-name">{{selectedStation.name}}</text>
+        <text class="footer-meta">{{selectedStation.availableBags}} bags · {{selectedStation.statusText}}</text>
+        <text class="footer-address">{{selectedStation.address}}</text>
+      </view>
+      <view class="footer-actions">
+        <button class="secondary-btn navigate-btn" bindtap="onNavigate">Navigate</button>
+        <button class="confirm-btn use-btn" bindtap="onConfirmStation">Use This Station</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -3,7 +3,9 @@ const auth = require('./utils/auth')
 
 App({
   onLaunch() {
+    // 恢复登录会话
     this.restoreSession()
+    // 首次启动时播种 AA 记账演示数据
     storage.seedDemoData()
   },
 
@@ -12,7 +14,7 @@ App({
     if (user) {
       this.globalData.userInfo = {
         nickName: user.nickname || user.username,
-        avatar: '/assets/img/wuhan-sakura.jpg',
+        avatar: user.avatar || '/assets/img/wuhan-sakura.jpg',
         level: '花期旅人'
       }
     }

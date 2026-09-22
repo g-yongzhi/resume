@@ -1,0 +1,29 @@
+<view class="page" wx:if="{{station}}">
+  <text class="page-title">Confirm Borrow</text>
+  <text class="page-subtitle">{{station.name}}</text>
+
+  <view class="card">
+    <text class="card-title">Number of Bags</text>
+    <view class="counter">
+      <view class="counter-btn" data-type="minus" bindtap="onChangeCount">−</view>
+      <text class="counter-value">{{bagCount}}</text>
+      <view class="counter-btn" data-type="plus" bindtap="onChangeCount">+</view>
+    </view>
+    <text class="card-tip">Max {{maxBags}} bags available at this station</text>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Deposit Required</text>
+      <text class="value">{{depositText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Deposit Status</text>
+      <text class="value {{depositPaid ? 'paid' : 'unpaid'}}">{{depositPaid ? 'Paid' : 'Not Paid'}}</text>
+    </view>
+  </view>
+
+  <button class="primary-btn" bindtap="onConfirmBorrow" loading="{{paying}}">
+    {{depositPaid ? 'Confirm Borrow' : 'Pay Deposit & Borrow'}}
+  </button>
+</view>

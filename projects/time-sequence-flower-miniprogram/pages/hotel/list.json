@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "酒店住宿",
+  "navigationBarBackgroundColor": "#fcfcf9",
+  "usingComponents": { "ui-icon": "/components/icon/icon" }
+}

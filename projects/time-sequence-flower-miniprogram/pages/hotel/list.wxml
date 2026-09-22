@@ -1,0 +1,137 @@
+<view class="container">
+  <!-- 页面头 -->
+  <view class="page-head page-pad">
+    <text class="head-kicker">花期旅居</text>
+    <text class="head-title font-serif">精选酒店</text>
+    <text class="head-sub">共 {{hotels.length}} 家赏花推荐住宿</text>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{starFilter > 0 ? 'active' : ''}}" data-panel="stars" bindtap="togglePanel">
+      <text>{{starFilter > 0 ? starFilter + '星' : '星级'}}</text>
+      <text class="arrow">▾</text>
+    </view>
+    <view class="filter-item {{priceFilter !== 'all' ? 'active' : ''}}" data-panel="price" bindtap="togglePanel">
+      <text>{{priceFilter !== 'all' ? priceFilter : '价格'}}</text>
+      <text class="arrow">▾</text>
+    </view>
+    <view class="filter-item {{facilityFilter.length > 0 ? 'active' : ''}}" data-panel="facility" bindtap="togglePanel">
+      <text>{{facilityFilter.length > 0 ? '设施(' + facilityFilter.length + ')' : '设施'}}</text>
+      <text class="arrow">▾</text>
+    </view>
+    <view class="filter-item {{sortBy !== 'default' ? 'active' : ''}}" data-panel="sort" bindtap="togglePanel">
+      <text>{{sortBy !== 'default' ? '排序' : '排序'}}</text>
+      <text class="arrow">▾</text>
+    </view>
+
+    <!-- 清除 -->
+    <view class="filter-clear" wx:if="{{filterCount > 0}}" bindtap="clearAll">
+      <text>清除</text>
+    </view>
+  </view>
+
+  <!-- 遮罩 -->
+  <view class="mask" wx:if="{{showPanel}}" bindtap="closePanel"></view>
+
+  <!-- 星级面板 -->
+  <view class="dropdown" wx:if="{{showPanel === 'stars'}}">
+    <view
+      class="drop-item {{starFilter === item.value ? 'selected' : ''}}"
+      wx:for="{{filters.stars}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="selectStar"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 价格面板 -->
+  <view class="dropdown" wx:if="{{showPanel === 'price'}}">
+    <view
+      class="drop-item {{priceFilter === item.value ? 'selected' : ''}}"
+      wx:for="{{filters.priceRange}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="selectPrice"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 设施面板（多选） -->
+  <view class="dropdown facility-drop" wx:if="{{showPanel === 'facility'}}">
+    <view class="drop-head">
+      <text class="drop-title">设施服务（可多选）</text>
+      <text class="drop-all" bindtap="toggleAllFacility">全选</text>
+    </view>
+    <view
+      class="drop-item check-item {{item.checked ? 'checked' : ''}}"
+      wx:for="{{facilityList}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="toggleFacility"
+    >
+      <view class="check-box">
+        <text wx:if="{{item.checked}}">✓</text>
+      </view>
+      <text>{{item.label}}</text>
+    </view>
+    <view class="drop-foot">
+      <view class="drop-btn cancel" bindtap="closePanel">取消</view>
+      <view class="drop-btn confirm" bindtap="confirmFacility">确认</view>
+    </view>
+  </view>
+
+  <!-- 排序面板 -->
+  <view class="dropdown" wx:if="{{showPanel === 'sort'}}">
+    <view
+      class="drop-item {{sortBy === item.value ? 'selected' : ''}}"
+      wx:for="{{filters.sort}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="selectSort"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 酒店列表 -->
+  <view class="list page-pad">
+    <!-- 无结果 -->
+    <view class="no-result" wx:if="{{hotels.length === 0}}">
+      <text class="nr-icon">🏨</text>
+      <text class="nr-text">没有符合条件的酒店</text>
+      <text class="nr-tip">试试调整筛选条件</text>
+    </view>
+
+    <view class="item card" wx:for="{{hotels}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <image class="item-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="item-body">
+        <text class="item-name font-serif">{{item.name}}</text>
+        <!-- 星级 -->
+        <view class="stars-row">
+          <text wx:for="{{item.starArray}}" wx:key="index" class="{{item ? 'star' : 'star empty'}}">★</text>
+        </view>
+        <view class="item-meta">
+          <text class="rating">{{item.rating}}分</text>
+          <text class="reviews">{{item.reviews}}条评价</text>
+        </view>
+        <text class="location">{{item.location}}</text>
+        <!-- 标签 -->
+        <view class="tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+        </view>
+        <!-- 房型 -->
+        <view class="room-types" wx:if="{{item.roomTypes.length > 0}}">
+          <text class="room-chip" wx:for="{{item.roomTypes}}" wx:key="*this" wx:for-item="rt">{{rt}}</text>
+        </view>
+        <!-- 设施 -->
+        <view class="facilities" wx:if="{{item.facilities.length > 0}}">
+          <text class="fac-tag" wx:for="{{item.facilities}}" wx:key="*this" wx:for-item="f">{{f}}</text>
+        </view>
+        <!-- 价格 -->
+        <view class="price-row">
+          <text class="price">¥{{item.price}}</text>
+          <text class="old-price" wx:if="{{item.oldPrice}}">¥{{item.oldPrice}}</text>
+          <text class="unit">/晚起</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

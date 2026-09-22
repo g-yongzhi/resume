@@ -1,0 +1,260 @@
+<!-- 校园失物招领 - 单页应用 -->
+<view class="page-root">
+<navigation-bar extClass="nav-overlay" title="" back="{{false}}" color="#FFFFFF" background="transparent"></navigation-bar>
+
+<scroll-view class="page-scroll" scroll-y type="list" enhanced show-scrollbar="{{false}}">
+  <!-- 顶部 Hero -->
+  <view class="hero">
+    <image class="hero-bg" src="/images/hero-bg.jpg" mode="aspectFill"></image>
+    <view class="hero-mask"></view>
+    <view class="hero-content">
+      <view class="hero-badge">Campus Lost & Found</view>
+      <view class="hero-title">校园失物招领</view>
+      <view class="hero-sub">让每一件遗失的物品，都能找到回家的路</view>
+      <view class="stats-row">
+        <view class="stat-card">
+          <text class="stat-num">{{lostCount}}</text>
+          <text class="stat-label">寻物中</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-card">
+          <text class="stat-num">{{foundCount}}</text>
+          <text class="stat-label">待认领</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-card">
+          <text class="stat-num">{{resolvedCount}}</text>
+          <text class="stat-label">已解决</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索 -->
+  <view class="search-wrap">
+    <view class="search-bar">
+      <view class="search-icon"></view>
+      <input
+        class="search-input"
+        placeholder="搜索物品、地点、描述..."
+        placeholder-class="search-placeholder"
+        value="{{searchKey}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+      />
+      <view wx:if="{{searchKey}}" class="search-clear" bindtap="onSearchClear">×</view>
+    </view>
+  </view>
+
+  <!-- 类型切换 -->
+  <view class="type-tabs">
+    <view
+      class="type-tab {{activeType === 'all' ? 'active' : ''}}"
+      data-type="all"
+      bindtap="onTypeTap"
+    >全部</view>
+    <view
+      class="type-tab type-lost {{activeType === 'lost' ? 'active' : ''}}"
+      data-type="lost"
+      bindtap="onTypeTap"
+    >
+      <view class="tab-dot lost-dot"></view>
+      失物
+    </view>
+    <view
+      class="type-tab type-found {{activeType === 'found' ? 'active' : ''}}"
+      data-type="found"
+      bindtap="onTypeTap"
+    >
+      <view class="tab-dot found-dot"></view>
+      招领
+    </view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <scroll-view class="category-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="category-list">
+      <view
+        class="category-chip {{activeCategory === 'all' ? 'active' : ''}}"
+        data-id="all"
+        bindtap="onCategoryTap"
+      >全部</view>
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category-chip {{activeCategory === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onCategoryTap"
+      >{{item.name}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 列表 -->
+  <view class="list-section">
+    <view class="list-header">
+      <text class="list-title">最新信息</text>
+      <text class="list-count">共 {{displayItems.length}} 条</text>
+    </view>
+
+    <block wx:if="{{displayItems.length}}">
+      <view
+        wx:for="{{displayItems}}"
+        wx:key="id"
+        class="item-card {{item.status === 'resolved' ? 'resolved' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="openDetail"
+      >
+        <view class="card-img-wrap">
+          <image class="card-img" src="{{item.cover}}" mode="aspectFill"></image>
+          <view class="card-type-tag {{item.type === 'lost' ? 'tag-lost' : 'tag-found'}}">{{item.typeLabel}}</view>
+          <view wx:if="{{item.status === 'resolved'}}" class="card-resolved-tag">已解决</view>
+        </view>
+        <view class="card-body">
+          <view class="card-top">
+            <text class="card-title">{{item.title}}</text>
+            <text class="card-category">{{item.categoryName}}</text>
+          </view>
+          <text class="card-desc">{{item.description}}</text>
+          <view class="card-meta">
+            <view class="meta-item">
+              <view class="meta-icon pin-icon"></view>
+              <text>{{item.location}}</text>
+            </view>
+            <view class="meta-item">
+              <view class="meta-icon time-icon"></view>
+              <text>{{item.time}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:else class="empty-state">
+      <view class="empty-icon"></view>
+      <text class="empty-title">暂无相关信息</text>
+      <text class="empty-desc">试试调整筛选条件，或发布一条新信息</text>
+    </view>
+  </view>
+
+  <view class="bottom-safe"></view>
+</scroll-view>
+</view>
+
+<!-- 发布按钮 -->
+<view class="fab" bindtap="openPublish">
+  <view class="fab-icon">+</view>
+  <text class="fab-text">发布</text>
+</view>
+
+<!-- 详情弹窗 -->
+<view wx:if="{{showDetail}}" class="modal-mask" bindtap="closeDetail" catchtouchmove="preventBubble">
+  <view class="modal-panel detail-panel" catchtap="preventBubble">
+    <view class="modal-handle"></view>
+    <image class="detail-cover" src="{{currentItem.cover}}" mode="aspectFill"></image>
+    <view class="detail-content">
+      <view class="detail-tags">
+        <text class="detail-type {{currentItem.type === 'lost' ? 'tag-lost' : 'tag-found'}}">{{currentItem.typeLabel}}</text>
+        <text class="detail-category">{{currentItem.categoryName}}</text>
+        <text wx:if="{{currentItem.status === 'resolved'}}" class="detail-resolved">已解决</text>
+      </view>
+      <text class="detail-title">{{currentItem.title}}</text>
+      <text class="detail-desc">{{currentItem.description || '暂无详细描述'}}</text>
+
+      <view class="detail-info-list">
+        <view class="detail-info-item">
+          <text class="info-label">地点</text>
+          <text class="info-value">{{currentItem.location}}</text>
+        </view>
+        <view class="detail-info-item">
+          <text class="info-label">时间</text>
+          <text class="info-value">{{currentItem.time}}</text>
+        </view>
+        <view class="detail-info-item">
+          <text class="info-label">联系</text>
+          <text class="info-value contact-value">{{currentItem.contact}}</text>
+        </view>
+      </view>
+
+      <view class="detail-actions">
+        <view class="action-btn primary-btn" bindtap="copyContact">
+          <view class="btn-icon copy-icon"></view>
+          复制联系方式
+        </view>
+        <view wx:if="{{currentItem.status !== 'resolved'}}" class="action-btn outline-btn" bindtap="markResolved">标记已解决</view>
+        <view class="action-btn danger-btn" bindtap="deleteItem">删除</view>
+      </view>
+    </view>
+    <view class="modal-close" bindtap="closeDetail">×</view>
+  </view>
+</view>
+
+<!-- 发布弹窗 -->
+<view wx:if="{{showPublish}}" class="modal-mask" bindtap="closePublish" catchtouchmove="preventBubble">
+  <view class="modal-panel publish-panel" catchtap="preventBubble">
+    <view class="modal-handle"></view>
+    <view class="publish-header">
+      <text class="publish-title">发布信息</text>
+      <text class="publish-sub">填写物品详情，帮助失主与拾主快速对接</text>
+    </view>
+
+    <scroll-view class="publish-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="form-group">
+        <text class="form-label">信息类型</text>
+        <picker mode="selector" range="{{typeOptions}}" value="{{form.typeIndex}}" bindchange="onFormTypeChange">
+          <view class="form-picker">
+            <text>{{typeOptions[form.typeIndex]}}</text>
+            <view class="picker-arrow"></view>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">物品分类</text>
+        <picker mode="selector" range="{{categoryNames}}" value="{{form.categoryIndex}}" bindchange="onFormCategoryChange">
+          <view class="form-picker">
+            <text>{{categoryNames[form.categoryIndex]}}</text>
+            <view class="picker-arrow"></view>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">物品名称</text>
+        <input class="form-input" placeholder="例如：黑色无线耳机" data-field="title" value="{{form.title}}" bindinput="onFormInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">详细描述</text>
+        <textarea class="form-textarea" placeholder="描述物品特征、遗失/拾取经过..." data-field="description" value="{{form.description}}" bindinput="onFormInput" maxlength="200" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">地点</text>
+        <input class="form-input" placeholder="例如：图书馆三楼" data-field="location" value="{{form.location}}" bindinput="onFormInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">联系方式</text>
+        <input class="form-input" placeholder="微信 / 手机 / QQ" data-field="contact" value="{{form.contact}}" bindinput="onFormInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">物品图片（可选）</text>
+        <view wx:if="{{form.image}}" class="image-preview">
+          <image class="preview-img" src="{{form.image}}" mode="aspectFill"></image>
+          <view class="remove-img" bindtap="removeImage">×</view>
+        </view>
+        <view wx:else class="upload-box" bindtap="chooseImage">
+          <view class="upload-icon"></view>
+          <text>点击上传图片</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="publish-footer">
+      <view class="action-btn outline-btn" bindtap="closePublish">取消</view>
+      <view class="action-btn primary-btn submit-btn" bindtap="submitPublish">确认发布</view>
+    </view>
+    <view class="modal-close" bindtap="closePublish">×</view>
+  </view>
+</view>

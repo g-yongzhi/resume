@@ -1,0 +1,62 @@
+<view class="page" wx:if="{{order}}">
+  <view class="status-banner {{order.statusClass}}">
+    <text class="status-banner__text">{{order.statusText}}</text>
+    <text class="status-banner__no">Order #{{order.orderNo}}</text>
+  </view>
+
+  <view class="usage-banner {{usageSummary.usageClass}}" wx:if="{{usageSummary}}">
+    <text class="usage-banner__elapsed">Borrowed {{usageSummary.elapsedText}}</text>
+    <text class="usage-banner__text">{{usageSummary.usageText}}</text>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Borrow Station</text>
+      <text class="value">{{order.stationName}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Return Station</text>
+      <text class="value">{{order.returnStationName}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Bag Count</text>
+      <text class="value">{{order.bagCount}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Borrow Time</text>
+      <text class="value">{{order.borrowTimeText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Return Time</text>
+      <text class="value">{{order.returnTimeText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Duration</text>
+      <text class="value">{{order.durationText}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Deposit</text>
+      <text class="value">{{order.depositText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Fee</text>
+      <text class="value">{{order.feeText}}{{isOngoing ? ' (est.)' : ''}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Total</text>
+      <text class="value highlight">{{order.totalText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Deposit Refund</text>
+      <text class="value">{{order.depositRefundText}}</text>
+    </view>
+  </view>
+
+  <button wx:if="{{isOngoing}}" class="primary-btn" bindtap="onReturn">Return This Bag</button>
+</view>

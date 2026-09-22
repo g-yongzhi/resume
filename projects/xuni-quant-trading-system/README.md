@@ -1,19 +1,42 @@
-# xuni Quant Trading System
+# xuni 量化交易系统
 
-量化交易研究项目。项目本地整理版本基于 Python / Freqtrade 方向，包含策略研究、回测脚本、风险控制、评分逻辑和测试代码。
+一个基于 Freqtrade 的个人量化交易研究项目，主要用于本地 Dry-run、回测验证、风控模块和策略辅助脚本整理。
 
-## 项目内容
+公开仓库只保留源码、测试、脚本和示例配置，不包含真实 API Key、本地数据库、历史行情文件、回测压缩包和运行日志。
 
-- Python 策略与评分模块
-- 回测与分析脚本
-- 风险控制相关逻辑
-- 测试用例
-- 示例配置文件
+## 模块内容
 
-## 本地整理版本
+- 策略辅助模块
+- 入场/出场信号拆分
+- 风控与仓位计算
+- 回测报告脚本
+- 健康检查脚本
+- pytest 测试用例
+- Freqtrade 示例配置
 
-本地项目包含 `src/`、`scripts/`、`tests/`、`configs/`、`requirements.txt` 等文件。公开展示时应保留示例配置，不上传真实账号、密钥或交易凭据。
+## 目录结构
 
-## 说明
+```text
+.
+├── src/                 # 业务模块
+├── scripts/             # 辅助脚本
+├── tests/               # 测试用例
+├── docs/                # 配置说明
+├── user_data/config/    # 示例配置
+├── requirements.txt
+└── README.md
+```
 
-该项目用于展示 Python 项目整理、脚本开发、测试意识和数据分析方向探索。
+## 本地运行
+
+```bash
+python -m venv .venv
+pip install -r requirements.txt
+pytest
+```
+
+Freqtrade 运行方式可参考 `docs/CONFIG.md` 和 `user_data/config/*.example.json`。
+
+## 风险说明
+
+本仓库用于学习、研究和工程整理，不构成投资建议。任何实盘操作都需要自行承担风险。

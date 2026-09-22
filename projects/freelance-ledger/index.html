@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>接单记账 · Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">L</span>
+        <div>
+          <h1>接单记账</h1>
+          <p>Freelance Ledger</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          概览
+        </button>
+        <button class="nav-item" data-view="records">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          项目记录
+        </button>
+        <button class="nav-item" data-view="expenses">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          支出记录
+        </button>
+        <button class="nav-item" data-view="split">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></svg>
+          分账
+        </button>
+        <button class="nav-item" data-view="analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 5-8"/></svg>
+          统计分析
+        </button>
+        <button class="nav-item" data-view="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          设置
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sync-badge">
+          <span class="sync-dot"></span>
+          本地已保存
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h2 id="page-title">概览</h2>
+          <p id="page-subtitle" class="subtitle">今日与本月接单概况</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost" id="btn-export" title="导出数据 (E)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="btn-label">导出</span>
+          </button>
+          <button class="btn btn-primary" id="btn-add" title="新建 (N)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span class="btn-label" id="btn-add-label">新建项目</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard -->
+      <section class="view active" id="view-dashboard">
+        <div class="period-bar">
+          <button class="period-btn" id="period-prev" aria-label="上个月">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="period-picker">
+            <select id="period-year" class="select period-select" aria-label="年份"></select>
+            <span class="period-sep">年</span>
+            <select id="period-month" class="select period-select" aria-label="月份"></select>
+            <span class="period-sep">月</span>
+          </div>
+          <button class="period-btn" id="period-next" aria-label="下个月">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-sm hidden" id="period-reset">回到本月</button>
+        </div>
+
+        <div class="stats-grid stats-grid-6">
+          <article class="stat-card highlight">
+            <span class="stat-label" id="stat-income-label">本月总收入</span>
+            <span class="stat-value" id="stat-month-income" data-animate="0">¥0</span>
+            <span class="stat-meta" id="stat-month-projects">0 个项目</span>
+            <div class="stat-progress"><div class="stat-progress-fill" id="stat-progress-fill"></div></div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">已到账</span>
+            <span class="stat-value received" id="stat-received">¥0</span>
+            <span class="stat-meta" id="stat-received-rate">到账率 0%</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">未到账</span>
+            <span class="stat-value pending" id="stat-pending">¥0</span>
+            <span class="stat-meta" id="stat-pending-count">0 笔待收</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label" id="stat-expense-label">本月支出</span>
+            <span class="stat-value expense" id="stat-expenses">¥0</span>
+            <span class="stat-meta" id="stat-expense-count">0 笔支出</span>
+          </article>
+          <article class="stat-card stat-net">
+            <span class="stat-label" id="stat-net-label">本月净收益</span>
+            <span class="stat-value" id="stat-net">¥0</span>
+            <span class="stat-meta" id="stat-net-desc">已到账 − 支出</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label" id="stat-hours-label">本月工时</span>
+            <span class="stat-value" id="stat-hours">0h</span>
+            <span class="stat-meta" id="stat-hourly">时薪 ¥0</span>
+          </article>
+        </div>
+
+        <div class="panel split-dashboard-panel">
+          <div class="panel-header">
+            <h3 id="split-dashboard-title">两人分账 · 本月</h3>
+            <button class="link-btn" data-goto="split">详情</button>
+          </div>
+          <div class="split-dashboard-body" id="split-dashboard-body"></div>
+        </div>
+
+        <div class="dashboard-grid dashboard-grid-3">
+          <div class="panel">
+            <div class="panel-header">
+              <h3 id="recent-panel-title">近期项目</h3>
+              <button class="link-btn" data-goto="records">查看全部</button>
+            </div>
+            <div class="recent-list" id="recent-list"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>待收款提醒</h3>
+            </div>
+            <div class="pending-list" id="pending-list"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3 id="recent-expense-title">近期支出</h3>
+              <button class="link-btn" data-goto="expenses">查看全部</button>
+            </div>
+            <div class="recent-list" id="recent-expenses"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Records -->
+      <section class="view" id="view-records">
+        <div class="filters-bar" id="filters-bar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="filter-search" placeholder="搜索项目、客户、备注… ( / )">
+          </div>
+          <select id="filter-status" class="select">
+            <option value="">全部状态</option>
+            <option value="in_progress">进行中</option>
+            <option value="pending">待收款</option>
+            <option value="partial">部分到账</option>
+            <option value="paid">已结清</option>
+          </select>
+          <select id="filter-platform" class="select">
+            <option value="">全部平台</option>
+          </select>
+          <select id="filter-month" class="select">
+            <option value="">全部月份</option>
+          </select>
+          <select id="filter-sort" class="select">
+            <option value="date-desc">最新优先</option>
+            <option value="date-asc">最早优先</option>
+            <option value="amount-desc">金额从高到低</option>
+            <option value="pending-desc">待收从高到低</option>
+          </select>
+          <button class="btn btn-ghost btn-sm hidden" id="btn-clear-filters">清除筛选</button>
+        </div>
+        <div class="records-meta">
+          <span id="records-count">共 0 条</span>
+        </div>
+        <div class="records-table-wrap desktop-only">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>项目</th>
+                <th>日期</th>
+                <th>工时</th>
+                <th>合同金额</th>
+                <th>已到账</th>
+                <th>未到账</th>
+                <th>平台 / 方式</th>
+                <th>状态</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="records-body"></tbody>
+          </table>
+        </div>
+        <div class="records-cards mobile-only" id="records-cards"></div>
+        <div class="empty-state hidden" id="records-empty">
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          </div>
+          <p id="records-empty-text">暂无项目记录</p>
+          <button class="btn btn-primary" id="btn-add-empty">添加第一条记录</button>
+        </div>
+      </section>
+
+      <!-- Expenses -->
+      <section class="view" id="view-expenses">
+        <div class="filters-bar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="expense-search" placeholder="搜索支出名称、备注…">
+          </div>
+          <select id="expense-filter-category" class="select">
+            <option value="">全部分类</option>
+          </select>
+          <select id="expense-filter-month" class="select">
+            <option value="">全部月份</option>
+          </select>
+          <select id="expense-filter-sort" class="select">
+            <option value="date-desc">最新优先</option>
+            <option value="date-asc">最早优先</option>
+            <option value="amount-desc">金额从高到低</option>
+          </select>
+          <button class="btn btn-ghost btn-sm hidden" id="btn-clear-expense-filters">清除筛选</button>
+        </div>
+        <div class="records-meta">
+          <span id="expenses-count">共 0 条</span>
+          <span id="expenses-total" class="expense-total"></span>
+        </div>
+        <div class="records-table-wrap desktop-only">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>支出名称</th>
+                <th>日期</th>
+                <th>分类</th>
+                <th>金额</th>
+                <th>支付方式</th>
+                <th>备注</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="expenses-body"></tbody>
+          </table>
+        </div>
+        <div class="records-cards mobile-only" id="expenses-cards"></div>
+        <div class="empty-state hidden" id="expenses-empty">
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <p id="expenses-empty-text">暂无支出记录</p>
+          <button class="btn btn-primary" id="btn-add-expense-empty">添加第一笔支出</button>
+        </div>
+      </section>
+
+      <!-- Split -->
+      <section class="view" id="view-split">
+        <div class="period-bar">
+          <button class="period-btn split-period-prev" aria-label="上个月">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="period-picker">
+            <select id="split-period-year" class="select period-select" aria-label="年份"></select>
+            <span class="period-sep">年</span>
+            <select id="split-period-month" class="select period-select" aria-label="月份"></select>
+            <span class="period-sep">月</span>
+          </div>
+          <button class="period-btn split-period-next" aria-label="下个月">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-sm hidden" id="split-period-reset">回到本月</button>
+        </div>
+
+        <div class="split-summary-bar" id="split-summary-bar"></div>
+        <div class="split-members-grid" id="split-members-grid"></div>
+
+        <div class="panel" style="margin-top:16px">
+          <div class="panel-header">
+            <h3>提账记录</h3>
+          </div>
+          <div class="payout-list" id="payout-list"></div>
+        </div>
+      </section>
+
+      <!-- Analytics -->
+      <section class="view" id="view-analytics">
+        <div class="analytics-grid">
+          <div class="panel panel-wide">
+            <div class="panel-header">
+              <h3>月度收支趋势</h3>
+              <div class="chart-legend">
+                <span><i class="legend-dot received"></i>已到账</span>
+                <span><i class="legend-dot expense"></i>支出</span>
+                <span><i class="legend-dot pending"></i>未到账</span>
+              </div>
+            </div>
+            <div class="chart-container" id="chart-monthly"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>支出分类</h3>
+            </div>
+            <div class="chart-container" id="chart-expense"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>平台分布</h3>
+            </div>
+            <div class="chart-container" id="chart-platform"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">
+              <h3>支付方式</h3>
+            </div>
+            <div class="chart-container" id="chart-payment"></div>
+          </div>
+          <div class="panel panel-wide">
+            <div class="panel-header">
+              <h3>年度汇总</h3>
+            </div>
+            <div class="year-summary" id="year-summary"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="view" id="view-settings">
+        <div class="settings-grid">
+          <div class="panel">
+            <div class="panel-header"><h3>数据管理</h3></div>
+            <div class="settings-content">
+              <p class="settings-desc">所有数据保存在浏览器本地，不会上传到任何服务器。</p>
+              <div class="settings-actions">
+                <button class="btn btn-secondary" id="btn-import">导入备份</button>
+                <button class="btn btn-secondary" id="btn-export-json">导出 JSON</button>
+                <button class="btn btn-secondary" id="btn-export-csv">导出 CSV</button>
+                <button class="btn btn-danger" id="btn-clear">清空所有数据</button>
+              </div>
+              <input type="file" id="import-file" accept=".json" hidden>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><h3>分账成员</h3></div>
+            <div class="settings-content">
+              <p class="settings-desc">按「已到账 − 支出」的净收益分账，比例之和须为 100%。</p>
+              <div class="form-grid" id="partners-settings">
+                <label class="field">
+                  <span>成员 1 名称</span>
+                  <input type="text" id="partner-1-name" placeholder="成员 A">
+                </label>
+                <label class="field">
+                  <span>分成比例（%）</span>
+                  <input type="number" id="partner-1-ratio" min="0" max="100" step="1" placeholder="50">
+                </label>
+                <label class="field">
+                  <span>成员 2 名称</span>
+                  <input type="text" id="partner-2-name" placeholder="成员 B">
+                </label>
+                <label class="field">
+                  <span>分成比例（%）</span>
+                  <input type="number" id="partner-2-ratio" min="0" max="100" step="1" placeholder="50">
+                </label>
+              </div>
+              <p class="settings-desc ratio-hint" id="ratio-hint">当前比例合计：100%</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><h3>自定义选项</h3></div>
+            <div class="settings-content">
+              <label class="field">
+                <span>常用平台（逗号分隔）</span>
+                <textarea id="custom-platforms" rows="3" placeholder="闲鱼, 淘宝, 微信, 支付宝, Upwork…"></textarea>
+              </label>
+              <label class="field">
+                <span>常用支付方式（逗号分隔）</span>
+                <textarea id="custom-payments" rows="3" placeholder="微信, 支付宝, 银行卡, PayPal…"></textarea>
+              </label>
+              <label class="field">
+                <span>支出分类（逗号分隔）</span>
+                <textarea id="custom-categories" rows="3" placeholder="软件订阅, 设备采购, 交通差旅…"></textarea>
+              </label>
+              <button class="btn btn-primary" id="btn-save-settings">保存设置</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header"><h3>关于</h3></div>
+            <div class="settings-content">
+              <p class="settings-desc">接单记账 v1.0 — 专为自由职业者设计的本地项目管理与收入追踪工具。</p>
+              <ul class="feature-list">
+                <li>项目工时与收入记录</li>
+                <li>支出分类与追踪</li>
+                <li>到账 / 未到账追踪</li>
+                <li>两人分账与提账追踪</li>
+              </ul>
+              <div class="shortcuts-hint">
+                <p class="settings-desc">快捷键</p>
+                <div class="shortcut-list">
+                  <span><kbd>N</kbd> 新建（收入/支出）</span>
+                  <span><kbd>/</kbd> 聚焦搜索</span>
+                  <span><kbd>Esc</kbd> 关闭弹窗</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="主导航">
+      <button class="mobile-nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        概览
+      </button>
+      <button class="mobile-nav-item" data-view="records">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        项目
+      </button>
+      <button class="mobile-nav-item mobile-nav-add" id="mobile-add" aria-label="新建">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button class="mobile-nav-item" data-view="expenses">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        支出
+      </button>
+      <button class="mobile-nav-item" data-view="split">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/></svg>
+        分账
+      </button>
+      <button class="mobile-nav-item" data-view="analytics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-6 4 3 5-8"/></svg>
+        统计
+      </button>
+      <button class="mobile-nav-item" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        设置
+      </button>
+    </nav>
+  </div>
+
+  <!-- Payout Modal -->
+  <div class="modal-overlay hidden" id="payout-modal-overlay">
+    <div class="modal modal-sm" role="dialog">
+      <div class="modal-header">
+        <h3>记录提账</h3>
+        <button class="icon-btn" id="payout-modal-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="payout-form" class="modal-body">
+        <input type="hidden" id="payout-id">
+        <input type="hidden" id="payout-partner-id">
+        <input type="hidden" id="payout-period">
+        <p class="payment-project-name" id="payout-partner-label"></p>
+        <label class="field">
+          <span>提账金额（¥）</span>
+          <input type="number" id="payout-amount" min="0.01" step="0.01" required>
+        </label>
+        <label class="field">
+          <span>提账日期</span>
+          <input type="date" id="payout-date" required>
+        </label>
+        <label class="field">
+          <span>备注</span>
+          <input type="text" id="payout-notes" placeholder="可选">
+        </label>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="payout-modal-cancel">取消</button>
+          <button type="submit" class="btn btn-primary">确认</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Expense Modal -->
+  <div class="modal-overlay hidden" id="expense-modal-overlay">
+    <div class="modal modal-sm" role="dialog" aria-labelledby="expense-modal-title">
+      <div class="modal-header">
+        <h3 id="expense-modal-title">记一笔支出</h3>
+        <button class="icon-btn" id="expense-modal-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="expense-form" class="modal-body">
+        <input type="hidden" id="expense-id">
+        <div class="form-grid">
+          <label class="field span-2">
+            <span>支出名称 *</span>
+            <input type="text" id="expense-title" required placeholder="例如：Figma 订阅、域名续费">
+          </label>
+          <label class="field">
+            <span>金额（¥）*</span>
+            <input type="number" id="expense-amount" min="0.01" step="0.01" required placeholder="0.00">
+          </label>
+          <label class="field">
+            <span>日期 *</span>
+            <input type="date" id="expense-date" required>
+          </label>
+          <label class="field">
+            <span>分类</span>
+            <select id="expense-category"></select>
+          </label>
+          <label class="field">
+            <span>支付方式</span>
+            <select id="expense-payment"></select>
+          </label>
+          <label class="field span-2">
+            <span>备注</span>
+            <textarea id="expense-notes" rows="2" placeholder="可选备注…"></textarea>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="expense-modal-cancel">取消</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" role="dialog" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">新建项目</h3>
+        <button class="icon-btn" id="modal-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="record-form" class="modal-body">
+        <input type="hidden" id="record-id">
+        <div class="form-grid">
+          <label class="field span-2">
+            <span>项目名称 *</span>
+            <input type="text" id="field-name" required placeholder="例如：品牌 Logo 设计">
+          </label>
+          <label class="field">
+            <span>客户 / 甲方</span>
+            <input type="text" id="field-client" placeholder="可选">
+          </label>
+          <label class="field">
+            <span>自动状态</span>
+            <div class="status-preview" id="status-preview"><span class="badge badge-in_progress">进行中</span></div>
+          </label>
+          <label class="field">
+            <span>开始日期 *</span>
+            <input type="date" id="field-date" required>
+          </label>
+          <label class="field">
+            <span>结束日期</span>
+            <input type="date" id="field-end-date">
+          </label>
+          <label class="field">
+            <span>工时（小时）</span>
+            <input type="number" id="field-hours" min="0" step="0.5" placeholder="0">
+          </label>
+          <label class="field">
+            <span>合同金额（¥）*</span>
+            <input type="number" id="field-amount" min="0" step="0.01" required placeholder="0.00">
+          </label>
+          <label class="field">
+            <span>已到账（¥）</span>
+            <input type="number" id="field-received" min="0" step="0.01" placeholder="0.00">
+          </label>
+          <label class="field">
+            <span>交易平台</span>
+            <select id="field-platform"></select>
+          </label>
+          <label class="field">
+            <span>支付方式</span>
+            <select id="field-payment"></select>
+          </label>
+          <label class="field span-2">
+            <span>备注</span>
+            <textarea id="field-notes" rows="2" placeholder="交付细节、发票信息、沟通记录…"></textarea>
+          </label>
+        </div>
+        <div class="form-summary" id="form-summary">
+          <span>未到账：<strong id="preview-pending">¥0.00</strong></span>
+          <span>时薪：<strong id="preview-hourly">—</strong></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="modal-cancel">取消</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Payment modal -->
+  <div class="modal-overlay hidden" id="payment-modal-overlay">
+    <div class="modal modal-sm" role="dialog">
+      <div class="modal-header">
+        <h3>记录到账</h3>
+        <button class="icon-btn" id="payment-modal-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form id="payment-form" class="modal-body">
+        <input type="hidden" id="payment-record-id">
+        <p class="payment-project-name" id="payment-project-name"></p>
+        <div class="payment-quick-actions">
+          <button type="button" class="chip-btn" id="payment-full">全额到账</button>
+          <button type="button" class="chip-btn" id="payment-half">收一半</button>
+        </div>
+        <label class="field">
+          <span>本次到账金额（¥）</span>
+          <input type="number" id="payment-amount" min="0.01" step="0.01" required>
+        </label>
+        <label class="field">
+          <span>到账日期</span>
+          <input type="date" id="payment-date" required>
+        </label>
+        <label class="field">
+          <span>支付方式</span>
+          <select id="payment-method"></select>
+        </label>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="payment-cancel">取消</button>
+          <button type="submit" class="btn btn-primary">确认到账</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Detail Drawer -->
+  <div class="drawer-overlay hidden" id="drawer-overlay">
+    <div class="drawer" id="detail-drawer" role="dialog" aria-label="项目详情">
+      <div class="drawer-header">
+        <div>
+          <h3 id="drawer-title">项目详情</h3>
+          <span class="badge" id="drawer-badge"></span>
+        </div>
+        <button class="icon-btn" id="drawer-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="drawer-body" id="drawer-body"></div>
+      <div class="drawer-footer" id="drawer-footer"></div>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div class="modal-overlay hidden" id="confirm-overlay">
+    <div class="modal modal-sm confirm-dialog" role="alertdialog">
+      <div class="modal-header">
+        <h3 id="confirm-title">确认操作</h3>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message"></p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="confirm-cancel">取消</button>
+          <button type="button" class="btn btn-danger" id="confirm-ok">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

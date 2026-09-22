@@ -1,0 +1,32 @@
+<view class="container detail-page" wx:if="{{food}}">
+  <image class="cover" src="{{food.image}}" mode="aspectFill" />
+  <view class="content page-pad">
+    <text class="title font-serif">{{food.title}}</text>
+    <view class="badges">
+      <text class="badge" wx:for="{{food.badges}}" wx:key="*this" wx:for-item="b">{{b}}</text>
+      <text class="category">{{food.category}}</text>
+    </view>
+    <view class="meta">
+      <text class="rating">★ {{food.rating}}</text>
+      <text class="reviews">{{food.reviews}}条评价</text>
+    </view>
+    <text class="zone">{{food.zone}}</text>
+    <view class="section card">
+      <text class="section-label">招牌菜品</text>
+      <view class="dishes">
+        <text class="dish" wx:for="{{food.dishes}}" wx:key="*this">· {{item}}</text>
+      </view>
+    </view>
+    <view class="price-box">
+      <text class="label">人均消费</text>
+      <text class="price">¥{{food.avgPrice}}</text>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <view class="bottom-price">
+      <text class="bp">¥{{food.avgPrice}}</text>
+      <text class="bu">/人</text>
+    </view>
+    <view class="btn-book" bindtap="onOrder">去用餐</view>
+  </view>
+</view>

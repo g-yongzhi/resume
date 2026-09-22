@@ -1,0 +1,34 @@
+<view class="container page-pad">
+  <view class="page-head">
+    <text class="head-kicker">寻味花城</text>
+    <text class="head-title font-serif">花期美食</text>
+    <text class="head-sub">品味节气与花香交织的在地风味</text>
+  </view>
+
+  <scroll-view scroll-x class="tabs" enhanced show-scrollbar="{{false}}">
+    <text
+      wx:for="{{categories}}"
+      wx:key="*this"
+      class="tab {{activeCategory === item ? 'active' : ''}}"
+      data-cat="{{item}}"
+      bindtap="onCategoryTap"
+    >{{item}}</text>
+  </scroll-view>
+
+  <view class="list">
+    <view class="item card" wx:for="{{foods}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <image class="item-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="item-body">
+        <text class="item-name font-serif">{{item.title}}</text>
+        <view class="badges">
+          <text class="badge" wx:for="{{item.badges}}" wx:key="*this" wx:for-item="b">{{b}}</text>
+        </view>
+        <view class="item-meta">
+          <text class="rating">★ {{item.rating}}</text>
+          <text class="zone">{{item.zone}}</text>
+        </view>
+        <text class="avg">人均 ¥{{item.avgPrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>

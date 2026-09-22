@@ -1,0 +1,255 @@
+/** EcoBag Design System — unified with Home page **/
+
+page {
+  --color-primary: #1B5E3B;
+  --color-primary-light: #2E7D52;
+  --color-success: #07c160;
+  --color-bg: #f0f2f1;
+  --color-card: #ffffff;
+  --color-text: #222222;
+  --color-text-secondary: #888888;
+  --color-text-muted: #666666;
+  --color-border: #e8ebe9;
+  --radius-card: 20rpx;
+  --radius-btn: 48rpx;
+  --shadow-card: 0 4rpx 16rpx rgba(27, 94, 60, 0.06);
+  --shadow-card-lg: 0 6rpx 24rpx rgba(27, 94, 60, 0.08);
+  --shadow-btn: 0 8rpx 20rpx rgba(27, 94, 60, 0.25);
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24rpx 28rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+}
+
+.page-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 32rpx;
+  line-height: 1.5;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 20rpx;
+}
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  border: 1rpx solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.tabs,
+.mode-switch {
+  display: flex;
+  background: var(--color-card);
+  border-radius: 999rpx;
+  padding: 6rpx;
+  margin-bottom: 24rpx;
+  border: 1rpx solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.tab,
+.mode-item {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  border-radius: 999rpx;
+}
+
+.tab.active,
+.mode-item.active {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  margin-right: 24rpx;
+}
+
+.value {
+  font-size: 26rpx;
+  color: var(--color-text);
+  text-align: right;
+  flex: 1;
+}
+
+.value.highlight {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.value.online { color: var(--color-success); }
+.value.offline { color: #999; }
+.value.paid { color: var(--color-success); }
+.value.unpaid { color: #e6a23c; }
+
+.primary-btn,
+.rent-btn,
+.scan-btn,
+.login-btn,
+.return-btn,
+.confirm-btn,
+.contact-btn,
+.empty__btn,
+.save-btn {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, var(--color-primary-light), var(--color-primary));
+  color: #fff;
+  border-radius: var(--radius-btn);
+  font-size: 32rpx;
+  font-weight: 600;
+  box-shadow: var(--shadow-btn);
+  border: none;
+  line-height: 1;
+}
+
+.primary-btn::after,
+.rent-btn::after,
+.scan-btn::after,
+.login-btn::after,
+.return-btn::after,
+.confirm-btn::after,
+.contact-btn::after,
+.empty__btn::after,
+.save-btn::after {
+  border: none;
+}
+
+.secondary-btn {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--color-card);
+  color: var(--color-primary);
+  border-radius: var(--radius-btn);
+  font-size: 30rpx;
+  font-weight: 600;
+  border: 2rpx solid var(--color-primary);
+  line-height: 1;
+}
+
+.secondary-btn::after {
+  border: none;
+}
+
+.menu {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1rpx solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 28rpx;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item__arrow {
+  font-size: 32rpx;
+  color: #aaa;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 32rpx;
+}
+
+.empty__text {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 32rpx;
+}
+
+.status-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.status-dot.online { background: var(--color-success); }
+.status-dot.offline { background: #ccc; }
+
+.order-card__status {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+}
+
+.order-card__status.ongoing {
+  color: #1989fa;
+  background: rgba(25, 137, 250, 0.12);
+}
+
+.order-card__status.returned {
+  color: var(--color-success);
+  background: rgba(7, 193, 96, 0.12);
+}
+
+.order-card__status.overdue {
+  color: #ee0a24;
+  background: rgba(238, 10, 36, 0.12);
+}

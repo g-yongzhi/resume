@@ -1,0 +1,13 @@
+.page-pad { padding: 24rpx; }
+.publish-bar { padding: 24rpx; color: #999; margin-bottom: 20rpx; display: flex; align-items: center; gap: 12rpx; }
+.post-card { padding: 24rpx; margin-bottom: 20rpx; }
+.post-card:last-child { margin-bottom: 0; }
+
+.forum-container { padding-bottom: calc(160rpx + env(safe-area-inset-bottom)); }
+.post-head { display: flex; justify-content: space-between; margin-bottom: 12rpx; }
+.post-author { font-size: 26rpx; font-weight: 600; color: #2D5A43; }
+.post-like { display: flex; align-items: center; gap: 6rpx; font-size: 24rpx; color: #999; }
+.post-title { display: block; font-size: 30rpx; font-weight: 700; margin-bottom: 8rpx; }
+.post-content { font-size: 26rpx; color: #666; line-height: 1.6; }
+.post-img { width: 100%; margin-top: 16rpx; border-radius: 12rpx; }
+.post-comments { display: block; font-size: 22rpx; color: #999; margin-top: 12rpx; }

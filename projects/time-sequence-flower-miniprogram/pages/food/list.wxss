@@ -1,0 +1,26 @@
+.page-head { margin-bottom: 20rpx; }
+.head-kicker { font-size: 22rpx; color: #e88d67; display: block; }
+.head-title { font-size: 40rpx; font-weight: 700; display: block; margin: 8rpx 0; }
+.head-sub { font-size: 24rpx; color: #999; }
+
+.tabs { white-space: nowrap; margin-bottom: 24rpx; }
+.tab {
+  display: inline-block; padding: 12rpx 28rpx; margin-right: 12rpx;
+  font-size: 26rpx; color: #666; background: #fff; border-radius: 32rpx;
+  border: 1rpx solid #eee;
+}
+.tab.active { background: #2D5A43; color: #fff; border-color: #2D5A43; }
+
+.list { display: flex; flex-direction: column; gap: 20rpx; }
+.item { display: flex; padding: 20rpx; }
+.item-img { width: 180rpx; height: 180rpx; border-radius: 16rpx; flex-shrink: 0; }
+.item-body { flex: 1; margin-left: 20rpx; }
+.item-name { font-size: 30rpx; font-weight: 700; display: block; }
+.badges { margin: 8rpx 0; }
+.badge {
+  display: inline-block; font-size: 20rpx; color: #e88d67;
+  background: #fef3ee; padding: 4rpx 12rpx; border-radius: 8rpx; margin-right: 8rpx;
+}
+.item-meta { font-size: 22rpx; color: #999; margin: 6rpx 0; }
+.rating { color: #e88d67; margin-right: 16rpx; }
+.avg { font-size: 26rpx; color: #2D5A43; font-weight: 600; }

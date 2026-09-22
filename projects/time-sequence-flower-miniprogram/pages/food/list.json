@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "美食推荐",
+  "navigationBarBackgroundColor": "#fcfcf9",
+  "usingComponents": { "ui-icon": "/components/icon/icon" }
+}

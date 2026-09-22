@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "时叙花城",
+  "navigationBarBackgroundColor": "#fcfcf9",
+  "usingComponents": { "ui-icon": "/components/icon/icon" }
+}

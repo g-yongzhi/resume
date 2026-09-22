@@ -1,0 +1,40 @@
+<view class="page" wx:if="{{station}}">
+  <text class="page-title">Confirm Return</text>
+  <text class="page-subtitle">Return at {{station.name}}</text>
+
+  <view class="card">
+    <text class="card-title">Select Rental</text>
+    <view
+      class="order-item {{selectedOrderId === item.id ? 'active' : ''}}"
+      wx:for="{{orders}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onSelectOrder"
+    >
+      <view class="order-item__top">
+        <text class="order-item__id">#{{item.id.slice(-6)}}</text>
+        <text class="order-item__count">{{item.bagCount}} bag(s)</text>
+      </view>
+      <text class="order-item__time">Borrowed: {{item.borrowTimeText}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Duration</text>
+      <text class="value">{{durationText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Fee</text>
+      <text class="value highlight">{{feeText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Deposit Refund</text>
+      <text class="value">Full refund after return</text>
+    </view>
+  </view>
+
+  <button class="primary-btn" bindtap="onConfirmReturn" loading="{{submitting}}">
+    Confirm Return
+  </button>
+</view>

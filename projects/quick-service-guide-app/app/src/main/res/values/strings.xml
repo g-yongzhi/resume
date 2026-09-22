@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">快速办事指南</string>
+    <string name="home">首页</string>
+    <string name="my">我的</string>
+    <string name="search_hint">搜索办事指南</string>
+    <string name="service_categories">服务分类</string>
+    <string name="hot_affairs">热门办事</string>
+    <string name="my_todo">我的待办</string>
+    <string name="recently_viewed">最近浏览</string>
+    <string name="no_todo_items">暂无待办事项</string>
+    <string name="choose_city">选择城市</string>
+    <string name="hot_cities">热门城市</string>
+    <string name="all_cities">所有城市</string>
+    <string name="cancel">取消</string>
+    <string name="add_to_todo">添加到待办</string>
+    <string name="processing_steps">办理步骤</string>
+    <string name="processing_time">办理时间</string>
+    <string name="difficulty">办理难度</string>
+    <string name="update_time">更新时间</string>
+    <string name="tips">小贴士</string>
+    <string name="required_materials">所需材料</string>
+    <string name="processing_location">办理地点</string>
+    <string name="work_time">工作时间</string>
+    <string name="telephone">联系电话</string>
+    <string name="guest_user">游客用户</string>
+    <string name="current_city">当前城市: %s</string>
+    <string name="switch_city">切换城市</string>
+    <string name="progress">进度: %1$d/%2$d</string>
+</resources>

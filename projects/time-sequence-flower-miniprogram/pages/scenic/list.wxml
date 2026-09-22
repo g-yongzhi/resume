@@ -1,0 +1,24 @@
+<view class="container page-pad">
+  <view class="page-head">
+    <text class="head-kicker">循节而行</text>
+    <text class="head-title font-serif">花期景点</text>
+    <text class="head-sub">共 {{scenics.length}} 处赏花胜地</text>
+  </view>
+
+  <view class="list">
+    <view class="item card" wx:for="{{scenics}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <image class="item-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="status">{{item.status}}</view>
+      <view class="item-body">
+        <view class="top-row">
+          <text class="item-name font-serif">{{item.name}}</text>
+          <text class="season">{{item.season}}</text>
+        </view>
+        <text class="place">{{item.place}}</text>
+        <text class="city">{{item.city}}</text>
+        <text class="desc">「{{item.desc}}」</text>
+        <text class="views">{{item.views}} 次探访</text>
+      </view>
+    </view>
+  </view>
+</view>

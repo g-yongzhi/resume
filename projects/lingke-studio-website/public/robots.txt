@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+Disallow: /admin
+
+Sitemap: https://lkqt.top/sitemap.xml

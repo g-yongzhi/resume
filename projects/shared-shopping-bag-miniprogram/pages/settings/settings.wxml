@@ -1,0 +1,38 @@
+<view class="page" wx:if="{{user}}">
+  <view class="card">
+    <text class="section-title">Profile</text>
+
+    <view class="profile-row">
+      <image class="avatar" src="{{user.avatar}}" mode="aspectFill" />
+      <view class="profile-info">
+        <text class="label">Nickname</text>
+        <input
+          class="nickname-input"
+          value="{{nickname}}"
+          placeholder="Enter nickname"
+          bindinput="onNicknameInput"
+        />
+      </view>
+    </view>
+
+    <button class="save-btn" bindtap="onSaveNickname">Save Nickname</button>
+  </view>
+
+  <view class="menu">
+    <view class="menu-item" bindtap="onSwitchLang">
+      <text class="menu-item__text">{{langLabel}}</text>
+      <text class="menu-item__extra">{{langNext}}</text>
+      <text class="menu-item__arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onAbout">
+      <text class="menu-item__text">About Us</text>
+      <text class="menu-item__arrow">›</text>
+    </view>
+    <view class="menu-item danger" bindtap="onLogout">
+      <text class="menu-item__text">Sign Out</text>
+      <text class="menu-item__arrow">›</text>
+    </view>
+  </view>
+
+  <text class="version">EcoBag v1.0.0</text>
+</view>

@@ -1,0 +1,28 @@
+<view class="container map-page">
+  <map
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="onMarkerTap"
+  />
+
+  <view class="panel card">
+    <text class="panel-title font-serif">武汉花期打卡点</text>
+    <view class="spot-list">
+      <view
+        class="spot-item"
+        wx:for="{{markerList}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onSpotTap"
+      >
+        <ui-icon name="map-pin" size="32" />
+        <text class="spot-name">{{item.name}}</text>
+        <ui-icon name="chevron-right" size="28" />
+      </view>
+    </view>
+  </view>
+</view>

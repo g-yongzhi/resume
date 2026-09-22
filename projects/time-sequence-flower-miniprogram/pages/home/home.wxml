@@ -1,0 +1,129 @@
+<view class="container">
+  <view class="hero">
+    <swiper class="hero-swiper" autoplay circular interval="5000" duration="800" bindchange="onBannerChange">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image class="hero-img" src="{{item.image}}" mode="aspectFill" />
+        <view class="hero-mask"></view>
+      </swiper-item>
+    </swiper>
+
+    <view class="hero-content">
+      <view class="brand">
+        <view class="brand-logo">
+          <image class="brand-icon" src="/assets/img/logo.png" mode="aspectFit" />
+        </view>
+        <view class="brand-text">
+          <text class="brand-name font-serif">时叙花城</text>
+          <text class="brand-en">ChronoFlower</text>
+        </view>
+      </view>
+
+      <view class="hero-badge">二十四节气 × 市花文化</view>
+      <text class="hero-title font-serif">以花为媒，循节而行</text>
+      <text class="hero-sub">当前节气 · 立夏 · 万物并秀，花事正浓</text>
+
+      <view class="search-bar" bindtap="onSearch">
+        <ui-icon name="search" size="32" />
+        <text class="search-placeholder">搜索城市、花卉或节气</text>
+        <view class="search-btn">智能规划</view>
+      </view>
+
+      <scroll-view scroll-x class="hot-words" enhanced show-scrollbar="{{false}}">
+        <text
+          wx:for="{{hotWords}}"
+          wx:key="*this"
+          class="hot-word"
+          data-word="{{item}}"
+          bindtap="onHotTap"
+        >{{item}}</text>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view class="nav-grid card">
+    <view
+      wx:for="{{navIcons}}"
+      wx:key="name"
+      class="nav-item"
+      data-path="{{item.path}}"
+      bindtap="onNavTap"
+    >
+      <view class="nav-icon-wrap">
+        <ui-icon name="{{item.icon}}" size="40" />
+      </view>
+      <text class="nav-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="term-section">
+    <view class="section-head center">
+      <text class="section-kicker">花期如约</text>
+      <text class="section-title font-serif">二十四节气花历</text>
+      <view class="section-line center-line"></view>
+      <text class="section-sub">顺应天时，循花而行</text>
+    </view>
+    <scroll-view scroll-x class="term-scroll" enhanced show-scrollbar="{{false}}">
+      <view class="term-card card" wx:for="{{terms}}" wx:key="id">
+        <view class="term-top">
+          <text class="term-id">{{item.id}}</text>
+          <text class="term-status">{{item.status}}</text>
+        </view>
+        <text class="term-emoji">{{item.emoji}}</text>
+        <text class="term-name font-serif">{{item.name}}</text>
+        <text class="term-flower">{{item.flower}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="dest-card card" bindtap="goDestination">
+    <view class="dest-left">
+      <text class="dest-label">精选目的地</text>
+      <text class="dest-title font-serif">开启一段花期之旅</text>
+      <view class="dest-link-row">
+        <text class="dest-link">查看全部</text>
+        <ui-icon name="chevron-right" size="28" />
+      </view>
+    </view>
+    <image class="dest-img" src="/assets/img/wuhan-sakura.jpg" mode="aspectFill" />
+  </view>
+
+  <view class="section-head">
+    <text class="section-title font-serif">精选推荐</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="waterfall">
+    <view class="waterfall-col">
+      <view class="feed-card card" wx:for="{{leftFeeds}}" wx:key="id" data-id="{{item.id}}" bindtap="onFeedTap">
+        <image class="feed-img" src="{{item.image}}" mode="widthFix" />
+        <view class="feed-body">
+          <text class="feed-tag">{{item.tag}}</text>
+          <text class="feed-title">{{item.title}}</text>
+          <view class="feed-meta">
+            <text>{{item.author}}</text>
+            <view class="feed-like">
+              <ui-icon name="heart" size="24" />
+              <text>{{item.likes}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="waterfall-col">
+      <view class="feed-card card" wx:for="{{rightFeeds}}" wx:key="id" data-id="{{item.id}}" bindtap="onFeedTap">
+        <image class="feed-img" src="{{item.image}}" mode="widthFix" />
+        <view class="feed-body">
+          <text class="feed-tag">{{item.tag}}</text>
+          <text class="feed-title">{{item.title}}</text>
+          <view class="feed-meta">
+            <text>{{item.author}}</text>
+            <view class="feed-like">
+              <ui-icon name="heart" size="24" />
+              <text>{{item.likes}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

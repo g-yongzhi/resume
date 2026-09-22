@@ -1,0 +1,81 @@
+.order-card {
+  padding: 28rpx 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.order-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.order-card__no {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.order-card__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.order-card__footer {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid var(--color-border);
+}
+
+.usage-banner {
+  margin-top: 16rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 16rpx;
+}
+
+.usage-banner.free {
+  background: rgba(7, 193, 96, 0.1);
+}
+
+.usage-banner.paid {
+  background: rgba(230, 162, 60, 0.12);
+}
+
+.usage-banner.warning {
+  background: rgba(230, 162, 60, 0.16);
+}
+
+.usage-banner.overdue {
+  background: rgba(238, 10, 36, 0.1);
+}
+
+.usage-banner__elapsed {
+  display: block;
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 6rpx;
+}
+
+.usage-banner__text {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.usage-banner.free .usage-banner__text {
+  color: var(--color-success);
+}
+
+.usage-banner.warning .usage-banner__text,
+.usage-banner.paid .usage-banner__text {
+  color: #b88230;
+}
+
+.usage-banner.overdue .usage-banner__text {
+  color: #ee0a24;
+}

@@ -1,0 +1,34 @@
+<view class="page" wx:if="{{station}}">
+  <view class="success-icon">✓</view>
+  <text class="page-title">Scan Successful</text>
+  <text class="page-subtitle">{{mode === 'borrow' ? 'Ready to borrow a bag' : 'Ready to return your bag'}}</text>
+
+  <view class="card">
+    <view class="row">
+      <text class="label">Station</text>
+      <text class="value">{{station.name}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Address</text>
+      <text class="value">{{station.address}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Status</text>
+      <text class="value {{isOnline ? 'online' : 'offline'}}">{{isOnline ? 'Online' : 'Offline'}}</text>
+    </view>
+    <view class="row" wx:if="{{mode === 'borrow'}}">
+      <text class="label">Available</text>
+      <text class="value highlight">{{station.availableBags}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Deposit</text>
+      <text class="value">{{depositText}}</text>
+    </view>
+    <view class="row">
+      <text class="label">Fee</text>
+      <text class="value">{{feeText}}</text>
+    </view>
+  </view>
+
+  <button class="primary-btn" bindtap="onContinue">Continue</button>
+</view>

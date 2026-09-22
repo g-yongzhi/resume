@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "创建行程",
+  "navigationBarBackgroundColor": "#fcfcf9",
+  "usingComponents": {
+    "ui-icon": "/components/icon/icon"
+  }
+}

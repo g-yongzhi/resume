@@ -1,0 +1,14 @@
+/** 全局样式 **/
+page {
+  --color-primary: #1a7f6e;
+  --color-accent: #f4a261;
+  --color-danger: #e76f51;
+  --color-bg: #f5f1ea;
+  --color-text: #2c3e50;
+  --color-muted: #8b9aab;
+  background: var(--color-bg);
+}
+
+view, text, input, textarea {
+  box-sizing: border-box;
+}

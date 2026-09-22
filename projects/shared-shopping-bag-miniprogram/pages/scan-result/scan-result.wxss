@@ -1,0 +1,22 @@
+.success-icon {
+  width: 96rpx;
+  height: 96rpx;
+  margin: 0 auto 24rpx;
+  border-radius: 50%;
+  background: rgba(7, 193, 96, 0.15);
+  color: var(--color-success);
+  font-size: 48rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  padding: 16rpx 32rpx;
+  margin-bottom: 40rpx;
+}
+
+.primary-btn {
+  margin-top: 8rpx;
+}

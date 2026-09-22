@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* 全站主栈：Instrument Sans + 苹方 / 黑体，无衬线 */
+  --font-sans: "Instrument Sans", "PingFang SC", "PingFang TC", "Microsoft YaHei UI", "Microsoft YaHei",
+    ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0a0a0a;
+  --color-mist: #f4f4f5;
+  --color-stone: #737373;
+  --color-fog: #a3a3a3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1;
+  background-color: #fafafa;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #d4d4d8;
+  color: #0a0a0a;
+}
+
+/* Custom cursor (fine pointer only — see context/CursorContext.tsx) */
+html.hide-system-cursor body {
+  cursor: none;
+}
+
+html.hide-system-cursor a,
+html.hide-system-cursor button,
+html.hide-system-cursor input,
+html.hide-system-cursor textarea,
+html.hide-system-cursor label {
+  cursor: none;
+}

@@ -1,0 +1,59 @@
+/* Header — 复用现有样式模式 */
+.header { position: relative; height: 400rpx; overflow: hidden; }
+.header-bg { width: 100%; height: 100%; }
+.header-mask {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+}
+.header-content {
+  position: absolute; left: 32rpx; right: 32rpx; bottom: 40rpx; color: #fff;
+}
+.header-kicker { font-size: 22rpx; opacity: 0.85; letter-spacing: 0.12em; }
+.header-title { display: block; font-size: 48rpx; font-weight: 700; margin-top: 8rpx; }
+.header-sub { display: block; font-size: 24rpx; opacity: 0.75; margin-top: 8rpx; }
+.total-box { margin-top: 20rpx; display: flex; align-items: baseline; gap: 16rpx; }
+.total-label { font-size: 22rpx; opacity: 0.7; }
+.total-amount { font-size: 36rpx; font-weight: 700; font-family: var(--font-serif, 'Noto Serif SC', serif); }
+
+/* Body */
+.body { position: relative; z-index: 2; margin-top: -32rpx; padding: 28rpx 0 calc(200rpx + env(safe-area-inset-bottom)); }
+
+/* List head */
+.list-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rpx; padding: 0 24rpx; }
+.list-title { font-size: 34rpx; font-weight: 600; color: #2D3A3A; line-height: 1.4; }
+.list-count { font-size: 24rpx; color: #999; }
+
+/* Trip card */
+.trip-card { margin-bottom: 20rpx; padding: 28rpx; }
+.trip-row { display: flex; align-items: center; }
+.trip-info { flex: 1; min-width: 0; }
+.trip-name { font-size: 32rpx; font-weight: 600; color: #2D3A3A; }
+.trip-meta { display: flex; align-items: center; gap: 16rpx; margin-top: 8rpx; }
+.trip-dest { font-size: 24rpx; color: #999; }
+.trip-date { font-size: 24rpx; color: #bbb; }
+.trip-tags { display: flex; align-items: center; gap: 12rpx; margin-top: 12rpx; }
+.tag-member {
+  display: flex; align-items: center; gap: 4rpx;
+  font-size: 22rpx; color: #2D5A43; background: #eef5f0;
+  padding: 4rpx 12rpx; border-radius: 16rpx;
+}
+.tag-status { font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 16rpx; }
+.tag-status.active { color: #e88d67; background: #fef3ee; }
+.tag-status.settled { color: #999; background: #f5f5f5; }
+.trip-amount { text-align: right; margin-right: 8rpx; }
+.amount-num { display: block; font-size: 36rpx; font-weight: 700; color: #e88d67; font-family: var(--font-serif, 'Noto Serif SC', serif); }
+.amount-label { font-size: 22rpx; color: #bbb; }
+
+/* Empty */
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120rpx 48rpx; color: #999; }
+.empty-title { font-size: 30rpx; color: #2D3A3A; margin-top: 24rpx; }
+.empty-sub { font-size: 24rpx; color: #bbb; margin-top: 8rpx; }
+.empty-btn { margin-top: 48rpx; width: 320rpx; }
+
+/* FAB */
+.fab {
+  position: fixed; right: 40rpx; bottom: calc(160rpx + env(safe-area-inset-bottom));
+  width: 96rpx; height: 96rpx; border-radius: 50%;
+  background: #2D5A43; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(45, 90, 67, 0.35); z-index: 100;
+}

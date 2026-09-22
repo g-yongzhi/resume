@@ -1,0 +1,73 @@
+<view class="page">
+  <view class="page-top">
+    <view class="scan-card card" bindtap="onScanEntry">
+      <image class="scan-card__scan" src="/assets/images/icon-scan.png" mode="aspectFit" />
+      <view class="scan-card__text">
+        <text class="scan-card__title">Scan Device QR Code</text>
+        <text class="scan-card__desc">Borrow or return a bag at the station</text>
+      </view>
+      <image class="scan-card__qr" src="/assets/images/icon-qr.png" mode="aspectFit" />
+    </view>
+
+    <view class="station-card card" wx:if="{{station}}" bindtap="onNearbyStations">
+      <image class="station-card__icon" src="/assets/images/icon-building.png" mode="aspectFit" />
+      <view class="station-card__info">
+        <text class="station-card__name">{{station.name}}</text>
+        <view class="station-card__status">
+          <view class="status-dot {{isOnline ? 'online' : 'offline'}}" />
+          <text>{{isOnline ? (t_home_online || 'Device Online') : (t_home_offline || 'Device Offline')}}</text>
+        </view>
+      </view>
+      <text class="station-card__arrow">›</text>
+    </view>
+  </view>
+
+  <view class="rental-card card" wx:if="{{station}}">
+    <text class="rental-card__title">Reusable Shopping Bag Available</text>
+
+    <view class="rental-card__content">
+      <view class="rental-card__bag-wrap">
+        <image class="rental-card__bag" src="/assets/images/bag-product.jpg" mode="aspectFit" />
+      </view>
+
+      <view class="rental-card__info">
+        <view class="available-row">
+          <text class="available-label">Available Now:</text>
+          <text class="available-num">{{station.availableBags}}</text>
+        </view>
+
+        <view class="meta-row">
+          <image class="meta-icon" src="/assets/images/icon-check.png" mode="aspectFit" />
+          <text class="meta-text">{{depositText}}</text>
+        </view>
+        <view class="meta-row">
+          <image class="meta-icon" src="/assets/images/icon-clock.png" mode="aspectFit" />
+          <text class="meta-text">{{feeText}}</text>
+        </view>
+        <view class="billing-link" catchtap="onBillingHelp">
+          <text class="billing-link__text">Billing details ›</text>
+        </view>
+        <view class="membership-hint {{hasMembership ? 'active' : ''}}" catchtap="onMembershipTap">
+          <text>{{membershipHint}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="rent-btn" bindtap="onRentNow">Rent Now</button>
+  </view>
+
+  <view class="page-bottom">
+    <view class="quick-actions">
+      <view class="quick-card card" bindtap="onRentalHistory">
+        <image class="quick-card__icon" src="/assets/images/icon-history.png" mode="aspectFit" />
+        <text class="quick-card__text">Rental History</text>
+        <text class="quick-card__arrow">›</text>
+      </view>
+      <view class="quick-card card" bindtap="onNearbyStations">
+        <image class="quick-card__icon" src="/assets/images/icon-stations.png" mode="aspectFit" />
+        <text class="quick-card__text">Nearby Stations</text>
+        <text class="quick-card__arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

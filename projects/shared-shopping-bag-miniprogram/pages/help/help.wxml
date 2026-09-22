@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="header">
+    <text class="page-title">Help & Support</text>
+    <text class="page-subtitle">FAQ</text>
+  </view>
+
+  <view class="category" wx:for="{{categories}}" wx:key="name">
+    <text class="category-title">{{item.name}}</text>
+    <view class="article-list card">
+      <view
+        class="article-item"
+        wx:for="{{item.articles}}"
+        wx:for-item="article"
+        wx:key="id"
+        data-id="{{article.id}}"
+        bindtap="onArticleTap"
+      >
+        <text class="article-title">{{article.title}}</text>
+        <text class="article-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="contact-btn" bindtap="onContact">Contact Support</button>
+</view>

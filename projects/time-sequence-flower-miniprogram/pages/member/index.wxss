@@ -1,0 +1,38 @@
+.member-page { padding-bottom: calc(40rpx + env(safe-area-inset-bottom)); }
+.member-header {
+  position: relative; height: 360rpx; display: flex;
+  align-items: center; justify-content: center; overflow: hidden;
+  background: linear-gradient(180deg, #2D5A43 0%, #3a7d5a 100%);
+}
+.header-content { display: flex; flex-direction: column; align-items: center; z-index: 1; }
+.avatar { width: 120rpx; height: 120rpx; border-radius: 50%; border: 4rpx solid rgba(255,255,255,.4); }
+.member-name { font-size: 34rpx; color: #fff; font-weight: 700; margin-top: 16rpx; }
+.level-badge { padding: 6rpx 24rpx; border-radius: 20rpx; margin-top: 10rpx; }
+.level-text { font-size: 22rpx; color: #fff; }
+
+.points-card { padding: 32rpx; margin: -40rpx 24rpx 24rpx; position: relative; z-index: 2; }
+.points-row { display: flex; align-items: center; }
+.points-left { flex: 1; }
+.points-num { font-size: 52rpx; font-weight: 800; color: #2D5A43; display: block; }
+.points-label { font-size: 22rpx; color: #999; }
+.points-divider { width: 1rpx; height: 64rpx; background: #eee; margin: 0 32rpx; }
+.points-right { flex: 1; }
+.next-label { font-size: 22rpx; color: #999; display: block; }
+.next-name { font-size: 28rpx; font-weight: 600; display: block; margin: 4rpx 0; }
+.next-need { font-size: 20rpx; color: #bbb; }
+.progress-bar { height: 8rpx; background: #f0f0f0; border-radius: 4rpx; margin-top: 24rpx; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4rpx; }
+
+.section-title { font-size: 32rpx; font-weight: 700; padding: 0 24rpx; margin-bottom: 16rpx; }
+.perks-grid { display: flex; flex-direction: column; gap: 16rpx; padding: 0 24rpx; }
+.perk-card { width: 100%; padding: 28rpx 24rpx; display: flex; align-items: center; gap: 20rpx; }
+.perk-icon-wrap { width: 64rpx; height: 64rpx; border-radius: 50%; background: #eef5f0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.perk-text { flex: 1; min-width: 0; }
+.perk-title { font-size: 28rpx; font-weight: 600; display: block; }
+.perk-desc { font-size: 22rpx; color: #999; display: block; margin-top: 4rpx; }
+
+.upgrade-btn {
+  margin: 32rpx 24rpx; padding: 24rpx 0; text-align: center;
+  background: #2D5A43; color: #fff; font-size: 30rpx; font-weight: 600;
+  border-radius: 48rpx;
+}

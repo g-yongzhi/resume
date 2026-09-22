@@ -1,0 +1,54 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- 密钥与本地配置（切勿提交）----
+.env
+user_data/config/config.json
+user_data/config/config_futures.json
+*_private.json
+
+# ---- Freqtrade 运行产物 ----
+user_data/data/**
+!user_data/data/.gitkeep
+user_data/logs/**
+!user_data/logs/.gitkeep
+user_data/backtest_results/**
+!user_data/backtest_results/.gitkeep
+user_data/hyperopt_results/**
+!user_data/hyperopt_results/.gitkeep
+user_data/plot/**
+!user_data/plot/.gitkeep
+user_data/freqaimodels/**
+!user_data/freqaimodels/.gitkeep
+*.sqlite
+*.sqlite-journal
+
+# ---- 本项目日志与缓存 ----
+logs/**
+!logs/.gitkeep
+data/raw/**
+!data/raw/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+models/**
+!models/.gitkeep
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini

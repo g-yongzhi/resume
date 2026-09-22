@@ -1,0 +1,27 @@
+<view class="container detail-page" wx:if="{{scenic}}">
+  <image class="cover" src="{{scenic.image}}" mode="aspectFill" />
+  <view class="status">{{scenic.status}}</view>
+  <view class="content page-pad">
+    <view class="top-row">
+      <text class="flower font-serif">{{scenic.name}}</text>
+      <text class="season">{{scenic.season}}</text>
+    </view>
+    <text class="place">{{scenic.place}}</text>
+    <text class="city">{{scenic.city}}</text>
+    <view class="quote card">
+      <text>「{{scenic.desc}}」</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">花期状态</text>
+      <text class="info-val">{{scenic.status}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">探访热度</text>
+      <text class="info-val">{{scenic.views}}</text>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <view class="btn-map" bindtap="onGo">查看地图</view>
+    <view class="btn-book" bindtap="onGo">前往打卡</view>
+  </view>
+</view>

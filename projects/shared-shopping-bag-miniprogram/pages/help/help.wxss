@@ -1,0 +1,48 @@
+.header {
+  padding: 0 8rpx 16rpx;
+}
+
+.category {
+  margin-bottom: 32rpx;
+}
+
+.category-title {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.article-list {
+  overflow: hidden;
+}
+
+.article-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.article-item:last-child {
+  border-bottom: none;
+}
+
+.article-title {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--color-text);
+  margin-right: 16rpx;
+}
+
+.article-arrow {
+  font-size: 32rpx;
+  color: #aaa;
+}
+
+.contact-btn {
+  margin-top: 16rpx;
+}

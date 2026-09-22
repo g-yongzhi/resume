@@ -1,0 +1,90 @@
+<view class="container page-pad">
+  <!-- 行程名称 -->
+  <view class="section card">
+    <text class="section-label">行程名称</text>
+    <input
+      class="input-main"
+      placeholder="给这趟旅行起个名字"
+      placeholder-class="placeholder"
+      value="{{tripName}}"
+      bindinput="onNameInput"
+      maxlength="20"
+      focus
+    />
+  </view>
+
+  <!-- 目的地 -->
+  <view class="section card">
+    <text class="section-label">目的地（选填）</text>
+    <input
+      class="input-main"
+      placeholder="如 湖北·武汉"
+      placeholder-class="placeholder"
+      value="{{destination}}"
+      bindinput="onDestInput"
+      maxlength="20"
+    />
+  </view>
+
+  <!-- 日期 -->
+  <view class="section card">
+    <text class="section-label">出行日期</text>
+    <view class="date-row">
+      <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+        <view class="date-picker {{startDate ? '' : 'empty'}}">
+          <ui-icon name="calendar" size="32" />
+          <text>{{startDate || '开始日期'}}</text>
+        </view>
+      </picker>
+      <text class="date-sep">至</text>
+      <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange" start="{{startDate}}">
+        <view class="date-picker {{endDate ? '' : 'empty'}}">
+          <ui-icon name="calendar" size="32" />
+          <text>{{endDate || '结束日期'}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 添加同行人 -->
+  <view class="section card">
+    <text class="section-label">添加同行人</text>
+    <!-- 已添加的成员 -->
+    <view class="member-chips" wx:if="{{members.length > 0}}">
+      <view
+        class="member-chip"
+        wx:for="{{members}}"
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="removeMember"
+      >
+        <view class="chip-avatar" style="background: {{item.color}};">
+          <text>{{item.name[0]}}</text>
+        </view>
+        <text class="chip-name">{{item.name}}</text>
+        <text class="chip-remove">✕</text>
+      </view>
+    </view>
+    <!-- 输入区 -->
+    <view class="add-member-row">
+      <input
+        class="input-member"
+        placeholder="输入姓名后回车"
+        placeholder-class="placeholder"
+        value="{{memberInput}}"
+        bindinput="onMemberInput"
+        bindconfirm="confirmMemberInput"
+        maxlength="8"
+      />
+      <view class="btn-add-member" bindtap="addMember">
+        <ui-icon name="plus" size="28" style="color: #fff;" />
+      </view>
+    </view>
+    <text class="hint">点击成员可移除，至少添加一位同行人</text>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-bar">
+    <view class="btn-primary {{canSubmit ? '' : 'disabled'}}" bindtap="onSubmit">创建行程</view>
+  </view>
+</view>

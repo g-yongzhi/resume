@@ -1,0 +1,43 @@
+<view class="container detail-page" wx:if="{{hotel}}">
+  <image class="cover" src="{{hotel.image}}" mode="aspectFill" />
+  <view class="content page-pad">
+    <text class="title font-serif">{{hotel.name}}</text>
+    <!-- 星级 -->
+    <view class="stars-row">
+      <text wx:for="{{hotel.starArray}}" wx:key="index" class="{{item ? 'star' : 'star empty'}}">★</text>
+      <text class="star-label">{{hotel.stars}}星/{{hotel.rating}}分</text>
+    </view>
+    <view class="meta">
+      <text class="reviews">{{hotel.reviews}}条评价</text>
+    </view>
+    <text class="location">{{hotel.location}}</text>
+    <view class="tags">
+      <text class="tag" wx:for="{{hotel.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+    </view>
+    <!-- 房型 -->
+    <view class="section card" wx:if="{{hotel.roomTypes.length > 0}}">
+      <text class="section-label">可选房型</text>
+      <view class="room-list">
+        <text class="room-chip" wx:for="{{hotel.roomTypes}}" wx:key="*this" wx:for-item="rt">{{rt}}</text>
+      </view>
+    </view>
+    <view class="section card">
+      <text class="section-label">设施服务</text>
+      <view class="facilities">
+        <text class="facility" wx:for="{{hotel.facilities}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+    <view class="price-box">
+      <text class="price">¥{{hotel.price}}</text>
+      <text class="old-price" wx:if="{{hotel.oldPrice}}">¥{{hotel.oldPrice}}</text>
+      <text class="unit">/晚起</text>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <view class="bottom-price">
+      <text class="bp">¥{{hotel.price}}</text>
+      <text class="bu">/晚</text>
+    </view>
+    <view class="btn-book" bindtap="onBook">立即预订</view>
+  </view>
+</view>
