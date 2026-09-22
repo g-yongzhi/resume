@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "我的",
-  "navigationBarBackgroundColor": "#fcfcf9",
-  "usingComponents": {
-    "ui-icon": "/components/icon/icon"
-  }
-}

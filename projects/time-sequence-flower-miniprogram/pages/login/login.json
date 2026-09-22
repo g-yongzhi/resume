@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "登录",
-  "navigationBarBackgroundColor": "#fcfcf9",
-  "usingComponents": {
-    "ui-icon": "/components/icon/icon"
-  }
-}

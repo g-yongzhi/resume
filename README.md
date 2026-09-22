@@ -30,6 +30,8 @@
 
 ## 项目导航
 
+各项目已拆分为独立仓库，链接指向对应仓库。
+
 ### 物联网 / 硬件 / EDA
 
 | 项目 | 内容 |
@@ -43,20 +45,20 @@
 
 | 项目 | 内容 |
 |---|---|
-| [Lingke Studio Website](projects/lingke-studio-website) | React + Vite + Express 的工作室官网项目，包含官网展示、案例页、联系表单和后台接口。 |
-| [Lingke Wallpaper Sharing Software](projects/lingke-wallpaper-sharing-software) | Node.js + Express + MySQL 壁纸分享网站，包含用户登录、上传、分类、下载等模块。 |
-| [Quick Service Guide App](projects/quick-service-guide-app) | Kotlin + Jetpack Compose 办事指南 Android 应用，包含城市、分类、搜索和事项详情。 |
-| [xuni Quant Trading System](projects/xuni-quant-trading-system) | 基于 Freqtrade 的量化交易研究项目，公开版保留源码、脚本、测试和示例配置。 |
+| [Lingke Studio Website](https://github.com/g-yongzhi/lingke-studio-website) | React + Vite + Express 的工作室官网项目，包含官网展示、案例页、联系表单和后台接口。 |
+| [Lingke Wallpaper Sharing Software](https://github.com/g-yongzhi/lingke-wallpaper-sharing-software) | Node.js + Express + MySQL 壁纸分享网站，包含用户登录、上传、分类、下载等模块。 |
+| [Quick Service Guide App](https://github.com/g-yongzhi/quick-service-guide-app) | Kotlin + Jetpack Compose 办事指南 Android 应用，包含城市、分类、搜索和事项详情。 |
+| [xuni Quant Trading System](https://github.com/g-yongzhi/xuni-quant-trading-system) | 基于 Freqtrade 的量化交易研究项目，公开版保留源码、脚本、测试和示例配置。 |
 
 ### 小程序 / Web 工具
 
 | 项目 | 内容 |
 |---|---|
-| [Shared Shopping Bag Mini Program](projects/shared-shopping-bag-miniprogram) | 共享购物袋小程序，包含站点、扫码借还、订单、押金会员等页面。 |
-| [Time Sequence Flower Mini Program](projects/time-sequence-flower-miniprogram) | 旅行与花期主题小程序，包含目的地、美食、酒店、攻略、账单等页面。 |
-| [Campus Lost and Found Mini Program](projects/campus-lost-and-found-miniprogram) | 校园失物招领小程序原型，包含分类、信息卡片和首页布局。 |
-| [Freelance Ledger](projects/freelance-ledger) | 原生 HTML / CSS / JavaScript 接单记账工具，本地保存收入、支出和分账数据。 |
-| [Anniversary Time Capsule](projects/anniversary-time-capsule) | 纪念日 / 时间胶囊网页工具，用于记录生日、纪念日和自定义事件。 |
+| [Shared Shopping Bag Mini Program](https://github.com/g-yongzhi/shared-shopping-bag-miniprogram) | 共享购物袋小程序，包含站点、扫码借还、订单、押金会员等页面。 |
+| [Time Sequence Flower Mini Program](https://github.com/g-yongzhi/time-sequence-flower-miniprogram) | 旅行与花期主题小程序，包含目的地、美食、酒店、攻略、账单等页面。 |
+| [Campus Lost and Found Mini Program](https://github.com/g-yongzhi/campus-lost-and-found-miniprogram) | 校园失物招领小程序原型，包含分类、信息卡片和首页布局。 |
+| [Freelance Ledger](https://github.com/g-yongzhi/freelance-ledger) | 原生 HTML / CSS / JavaScript 接单记账工具，本地保存收入、支出和分账数据。 |
+| [Anniversary Time Capsule](https://github.com/g-yongzhi/anniversary-time-capsule) | 纪念日 / 时间胶囊网页工具，用于记录生日、纪念日和自定义事件。 |
 
 ---
 

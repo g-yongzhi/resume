@@ -1,5 +1,0 @@
-<view class="page" wx:if="{{article}}">
-  <text class="page-title">{{article.title}}</text>
-  <text class="page-subtitle">{{article.category}}</text>
-  <text class="content card">{{article.content}}</text>
-</view>

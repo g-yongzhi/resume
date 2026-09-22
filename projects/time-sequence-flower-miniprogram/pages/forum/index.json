@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "攻略论坛",
-  "navigationBarBackgroundColor": "#fcfcf9",
-  "usingComponents": {
-    "ui-icon": "/components/icon/icon"
-  }
-}

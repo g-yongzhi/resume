@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "注册",
-  "navigationBarBackgroundColor": "#fcfcf9",
-  "usingComponents": {
-    "ui-icon": "/components/icon/icon"
-  }
-}
