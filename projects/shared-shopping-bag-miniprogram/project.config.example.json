@@ -1,0 +1,13 @@
+{
+  "description": "Shared shopping bag WeChat Mini Program",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram",
+  "appid": "your-wechat-miniprogram-appid",
+  "projectname": "shared-shopping-bag-miniprogram",
+  "miniprogramRoot": "./"
+}
